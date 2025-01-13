@@ -11,9 +11,12 @@ class _FavouriteState extends State<Favourite> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
-        child: Text("Favourites"),
-      ),
-    );
+        color: const Color.fromARGB(255, 0, 44, 77),
+        child: Center(
+          child: Text(
+            "Favourites",
+            style: TextStyle(color: Colors.white),
+          ),
+        ));
   }
 }
