@@ -42,19 +42,12 @@ class _HomepageState extends State<Homepage> {
     });
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index; // Update the selected index
-    });
-    print(_selectedIndex);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // Make the AppBar transparent
+        backgroundColor:
+            const Color.fromARGB(255, 0, 44, 77), // Make the AppBar transparent
         elevation: 0, // Remove the shadow
         title: Row(
           children: [
@@ -97,7 +90,7 @@ class _HomepageState extends State<Homepage> {
       backgroundColor: const Color.fromARGB(255, 0, 44, 77),
       body: Column(
         children: [
-          SizedBox(height: 80), // Space for the AppBar
+          SizedBox(height: 10), // Space for the AppBar
           // Image carousel
           Container(
             height: 200, // Height of the carousel
@@ -148,32 +141,6 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.rss_feed),
-            label: 'Feed',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt),
-            label: 'Orders',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex, // Set the current index
-        selectedItemColor: Colors.blue, // Selected item color
-        unselectedItemColor: Colors.blueGrey[400], // Unselected items color
-        onTap: _onItemTapped, // Handle item tap
-        backgroundColor:
-            Color.fromARGB(255, 0, 44, 77), // Navigation bar background color
       ),
     );
   }
