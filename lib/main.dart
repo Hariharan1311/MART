@@ -51,6 +51,7 @@ class _StartPageState extends State<StartPage> {
     setState(() {
       _selectedIndex = index; // Update the selected index
     });
+    print(_selectedIndex);
   }
 
   @override
