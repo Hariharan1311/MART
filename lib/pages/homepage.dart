@@ -89,9 +89,9 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 0, 44, 77),
-      body: Column(
+      body: ListView(
         children: [
-          const SizedBox(height: 10), // Space for the AppBar
+          //const SizedBox(height: 10), // Space for the AppBar
           // Image carousel
           SizedBox(
             height: 200, // Height of the carousel
@@ -109,6 +109,70 @@ class _HomepageState extends State<Homepage> {
           ),
           const SizedBox(height: 20),
           // Section title
+          const Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  "Hostel",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  "See more",
+                  style: TextStyle(color: Colors.white70, fontSize: 15),
+                ),
+              ),
+            ],
+          ),
+          // Horizontal ListView
+          SizedBox(
+            height: 200, // Height for the horizontal list
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: const [Itemcard(), Itemcard(), Itemcard()],
+            ),
+          ),
+          const Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  "Hostel",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  "See more",
+                  style: TextStyle(color: Colors.white70, fontSize: 15),
+                ),
+              ),
+            ],
+          ),
+          // Horizontal ListView
+          SizedBox(
+            height: 200, // Height for the horizontal list
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: const [Itemcard(), Itemcard(), Itemcard()],
+            ),
+          ),
           const Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

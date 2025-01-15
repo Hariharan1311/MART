@@ -10,10 +10,13 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Profile"),
-      ),
-    );
+    return Container(
+        color: const Color.fromARGB(255, 0, 44, 77),
+        child: Center(
+          child: Text(
+            "Profile",
+            style: TextStyle(color: Colors.white),
+          ),
+        ));
   }
 }
