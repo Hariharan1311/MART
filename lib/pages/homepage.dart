@@ -11,7 +11,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  int _selectedIndex =
+  final int _selectedIndex =
       0; // Track the selected index for the bottom navigation bar
   late PageController _pageController; // PageController for the carousel
   late Timer _timer; // Timer for automatic sliding
@@ -32,11 +32,11 @@ class _HomepageState extends State<Homepage> {
   }
 
   void _startAutoSlide() {
-    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       _currentPage = (_currentPage + 1) % 3; // Cycle through pages
       _pageController.animateToPage(
         _currentPage,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     });
@@ -56,7 +56,7 @@ class _HomepageState extends State<Homepage> {
                 decoration: InputDecoration(
                   hintText: 'Search...',
                   hintStyle:
-                      TextStyle(color: Colors.white54), // Hint text color
+                      const TextStyle(color: Colors.white54), // Hint text color
                   filled: true,
                   fillColor:
                       Colors.white.withOpacity(0.2), // Search bar background
@@ -66,17 +66,18 @@ class _HomepageState extends State<Homepage> {
                     borderSide: BorderSide.none, // No border
                   ),
                   contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20.0), // Padding
-                  prefixIcon: Icon(
+                      const EdgeInsets.symmetric(horizontal: 20.0), // Padding
+                  prefixIcon: const Icon(
                     Icons.search,
                     color: Colors.white54, // Search icon color
                   ),
                 ),
               ),
             ),
-            SizedBox(width: 10), // Space between the search bar and cart icon
+            const SizedBox(
+                width: 10), // Space between the search bar and cart icon
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.shopping_cart,
                 color: Colors.white54, // Cart icon color
               ),
@@ -90,9 +91,9 @@ class _HomepageState extends State<Homepage> {
       backgroundColor: const Color.fromARGB(255, 0, 44, 77),
       body: Column(
         children: [
-          SizedBox(height: 10), // Space for the AppBar
+          const SizedBox(height: 10), // Space for the AppBar
           // Image carousel
-          Container(
+          SizedBox(
             height: 200, // Height of the carousel
             child: PageView(
               controller: _pageController,
@@ -106,14 +107,14 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           // Section title
-          Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: Text(
                   "Hostel",
                   style: TextStyle(
@@ -124,7 +125,7 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: Text(
                   "See more",
                   style: TextStyle(color: Colors.white70, fontSize: 15),
@@ -137,7 +138,7 @@ class _HomepageState extends State<Homepage> {
             height: 200, // Height for the horizontal list
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: [Itemcard(), Itemcard(), Itemcard()],
+              children: const [Itemcard(), Itemcard(), Itemcard()],
             ),
           ),
         ],

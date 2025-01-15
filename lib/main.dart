@@ -4,7 +4,7 @@ import 'package:mart/pages/backbone.dart';
 import 'package:mart/pages/homepage.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: Backbone(),
     debugShowCheckedModeBanner: false,
   ));

@@ -25,11 +25,11 @@ class _BackboneState extends State<Backbone> {
     });
   }
 
-  List<Widget> _pages = <Widget>[
-    Homepage(),
-    Explore(),
-    Favourite(),
-    Profile(),
+  final List<Widget> _pages = <Widget>[
+    const Homepage(),
+    const Explore(),
+    const Favourite(),
+    const Profile(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -57,8 +57,8 @@ class _BackboneState extends State<Backbone> {
         selectedItemColor: Colors.blue, // Selected item color
         unselectedItemColor: Colors.blueGrey[400], // Unselected items color
         onTap: _onItemTapped, // Handle item tap
-        backgroundColor:
-            Color.fromARGB(255, 0, 44, 77), // Navigation bar background color
+        backgroundColor: const Color.fromARGB(
+            255, 0, 44, 77), // Navigation bar background color
       ),
       body: _pages[_selectedindex],
     );

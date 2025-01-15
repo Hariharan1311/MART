@@ -21,16 +21,16 @@ class Itemcard extends StatelessWidget {
                 child: Container(
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                  height: 80,
+                  width: 80,
                   child: Image(
                     image: AssetImage('assets/1.jpg'),
                     fit: BoxFit.cover,
                   ),
-                  height: 80,
-                  width: 80,
                 ),
               ),
               //Name
-              Text(
+              const Text(
                 "Name of item",
                 style: TextStyle(
                   color: Colors.black,
@@ -42,7 +42,7 @@ class Itemcard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // Availability
-                  Column(
+                  const Column(
                     children: [
                       Text("Cost"),
                       SizedBox(
@@ -52,9 +52,9 @@ class Itemcard extends StatelessWidget {
                     ],
                   ),
                   // Vertical Divider
-                  Container(
+                  SizedBox(
                     height: 20, // Adjust as per your design
-                    child: VerticalDivider(
+                    child: const VerticalDivider(
                       color: Colors.grey,
                       thickness: 2,
                       width: 20, // Add some spacing
@@ -63,7 +63,7 @@ class Itemcard extends StatelessWidget {
                   // Cost
                   Center(
                     child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                             text: "Avail",
                             style: TextStyle(color: Colors.black))),
                   ),
