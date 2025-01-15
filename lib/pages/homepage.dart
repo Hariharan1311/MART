@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mart/pages/Exploresubpage.dart';
+import 'package:mart/utilities/categories/Books.dart';
+import 'package:mart/utilities/categories/Electronics.dart';
 import 'dart:async';
-
 import 'package:mart/utilities/itemcard.dart';
 
 class Homepage extends StatefulWidget {
@@ -11,11 +13,12 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final int _selectedIndex =
-      0; // Track the selected index for the bottom navigation bar
   late PageController _pageController; // PageController for the carousel
   late Timer _timer; // Timer for automatic sliding
   int _currentPage = 0; // Current page index
+
+  final electronics = Electronics(); // Items for Electronics category
+  final books = Books(); // Items for Books category
 
   @override
   void initState() {
@@ -46,40 +49,34 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:
-            const Color.fromARGB(255, 0, 44, 77), // Make the AppBar transparent
-        elevation: 0, // Remove the shadow
+        backgroundColor: const Color.fromARGB(255, 0, 44, 77),
+        elevation: 0,
         title: Row(
           children: [
             Expanded(
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Search...',
-                  hintStyle:
-                      const TextStyle(color: Colors.white54), // Hint text color
+                  hintStyle: const TextStyle(color: Colors.white54),
                   filled: true,
-                  fillColor:
-                      Colors.white.withOpacity(0.2), // Search bar background
+                  fillColor: Colors.white.withOpacity(0.2),
                   border: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(30.0), // Rounded corners
-                    borderSide: BorderSide.none, // No border
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide: BorderSide.none,
                   ),
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 20.0), // Padding
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
                   prefixIcon: const Icon(
                     Icons.search,
-                    color: Colors.white54, // Search icon color
+                    color: Colors.white54,
                   ),
                 ),
               ),
             ),
-            const SizedBox(
-                width: 10), // Space between the search bar and cart icon
+            const SizedBox(width: 10),
             IconButton(
               icon: const Icon(
                 Icons.shopping_cart,
-                color: Colors.white54, // Cart icon color
+                color: Colors.white54,
               ),
               onPressed: () {
                 print('Cart icon pressed');
@@ -91,32 +88,35 @@ class _HomepageState extends State<Homepage> {
       backgroundColor: const Color.fromARGB(255, 0, 44, 77),
       body: ListView(
         children: [
-          //const SizedBox(height: 10), // Space for the AppBar
           // Image carousel
           SizedBox(
-            height: 200, // Height of the carousel
+            height: 200,
             child: PageView(
               controller: _pageController,
               children: [
                 Container(
-                    child: Image.asset('assets/1.jpg', fit: BoxFit.cover)),
+                  child: Image.asset('assets/1.jpg', fit: BoxFit.cover),
+                ),
                 Container(
-                    child: Image.asset('assets/2.jpg', fit: BoxFit.cover)),
+                  child: Image.asset('assets/2.jpg', fit: BoxFit.cover),
+                ),
                 Container(
-                    child: Image.asset('assets/3.jpg', fit: BoxFit.cover)),
+                  child: Image.asset('assets/3.jpg', fit: BoxFit.cover),
+                ),
               ],
             ),
           ),
           const SizedBox(height: 20),
-          // Section title
-          const Row(
+
+          // Books Section
+          Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(
-                  "Hostel",
+                  "Books",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -125,30 +125,53 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "See more",
-                  style: TextStyle(color: Colors.white70, fontSize: 15),
+                padding: const EdgeInsets.all(10.0),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ExploreSubPage(
+                          type: books.items,
+                          title: "Books",
+                        ),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "See more",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],
           ),
-          // Horizontal ListView
           SizedBox(
-            height: 200, // Height for the horizontal list
-            child: ListView(
+            height: 200,
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: const [Itemcard(), Itemcard(), Itemcard()],
+              itemCount: books.items.length,
+              itemBuilder: (context, index) {
+                final item = books.items[index];
+                return Itemcard(
+                  name: item['name'],
+                  imageUrl: item['url'],
+                  price: item['price'],
+                );
+              },
             ),
           ),
-          const Row(
+          const SizedBox(height: 10),
+
+          // Electronics Section
+          Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(
-                  "Hostel",
+                  "Electronics",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -157,52 +180,40 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "See more",
-                  style: TextStyle(color: Colors.white70, fontSize: 15),
-                ),
-              ),
-            ],
-          ),
-          // Horizontal ListView
-          SizedBox(
-            height: 200, // Height for the horizontal list
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: const [Itemcard(), Itemcard(), Itemcard()],
-            ),
-          ),
-          const Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "Hostel",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                padding: const EdgeInsets.all(10.0),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ExploreSubPage(
+                          type: electronics.items,
+                          title: "Electronics",
+                        ),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "See more",
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "See more",
-                  style: TextStyle(color: Colors.white70, fontSize: 15),
-                ),
-              ),
             ],
           ),
-          // Horizontal ListView
           SizedBox(
-            height: 200, // Height for the horizontal list
-            child: ListView(
+            height: 200,
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: const [Itemcard(), Itemcard(), Itemcard()],
+              itemCount: electronics.items.length,
+              itemBuilder: (context, index) {
+                final item = electronics.items[index];
+                return Itemcard(
+                  name: item['name'],
+                  imageUrl: item['url'],
+                  price: item['price'],
+                );
+              },
             ),
           ),
         ],
